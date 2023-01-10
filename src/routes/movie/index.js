@@ -1,5 +1,6 @@
 const express = require("express");
 const status = require("http-status");
+const fs = require('fs')
 const { isValidObjectId } = require("mongoose");
 const Movie = require("../../Schemas/Movieschema");
 const userSchema = require("../../Schemas/userSchema");
@@ -23,7 +24,8 @@ module.exports = function () {
 
       let movieData = req.body;
       movieData.url = response;
-     
+     fs.unlinkSync(path)
+      
       if (!movieData) {
         return res
           .status(status.NOT_FOUND)
