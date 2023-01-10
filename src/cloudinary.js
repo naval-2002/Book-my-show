@@ -1,23 +1,23 @@
-const { json } = require("body-parser");
-require("dotenv").config();
 const cloundnary = require("cloudinary").v2;
+require("dotenv").config();
 
-const CloudName = process.env.CloudName;
-
-const Api_key = process.env.Api_key;
-const Api_secret = process.env.Api_secret;
+const Cloud_Name = process.env.CLOUD_NAME;
+const Cloud_Api = "818386724427242";
+const Cloud_Api_Secret = "W4wbVaPojddzDuGc6mSEobgtQlc";
 
 cloundnary.config({
-  cloud_name: CloudName,
-  api_key: Api_key,
-  api_secret: Api_secret,
+  cloud_name: Cloud_Name,
+  api_key: Cloud_Api,
+  api_secret: Cloud_Api_Secret,
 });
 
 exports.Uploads = async function (file, folder) {
   try {
+    console.log(Cloud_Name, "cloud");
     const result = await cloundnary.uploader.upload(file, { folder });
+    console.log(result);
     return result.secure_url;
-  } catch (err) {
-    console.log({ err });
+  } catch (error) {
+    console.log({ error });
   }
 };

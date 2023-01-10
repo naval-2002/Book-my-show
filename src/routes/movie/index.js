@@ -7,10 +7,9 @@ const MovieMiddleware = require("../../middleware/movieMiddleware");
 const jwt = require("jsonwebtoken");
 const uploads = require("../../multer");
 const cloundnary = require("../../cloudinary");
+const fs = require("fs");
 module.exports = function () {
   const api = express.Router();
-
-
 
   api.post("/", uploads.single("images"), async function (req, res) {
     try {
@@ -23,7 +22,7 @@ module.exports = function () {
 
       let movieData = req.body;
       movieData.url = response;
-     
+      fs.unlinkSync(path);
       if (!movieData) {
         return res
           .status(status.NOT_FOUND)

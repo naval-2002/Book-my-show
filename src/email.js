@@ -1,7 +1,7 @@
 const sendgrid = require("@sendgrid/mail");
 const emailFrom = "nitinkawdal@gmail.com";
 require("dotenv").config();
-const BookingData = require("../../Schemas/BookingScema");
+
 const api_key = process.env.api_key;
 
 class EmailService {
